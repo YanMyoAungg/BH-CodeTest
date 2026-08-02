@@ -1,0 +1,30 @@
+services:
+  server:
+    build:
+      context: .
+      target: server
+    ports:
+      - "3000:3000"
+    volumes:
+      - db_data:/app/server/data
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - JWT_SECRET=${JWT_SECRET:-change-me-to-a-secure-random-string}
+    restart: unless-stopped
+
+  client:
+    build:
+      context: .
+      target: client
+      args:
+        VITE_API_URL: ${VITE_API_URL:-http://localhost:3000/graphql}
+        VITE_TOKEN_NAME: ${VITE_TOKEN_NAME:-better_hr_token}
+    ports:
+      - "3001:3001"
+    depends_on:
+      - server
+    restart: unless-stopped
+
+volumes:
+  db_data:

@@ -1,0 +1,27 @@
+{
+  "name": "better-hr",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently -n server,client -c blue,green \"pnpm --filter server dev\" \"pnpm --filter client dev\"",
+    "dev:server": "pnpm --filter server dev",
+    "dev:client": "pnpm --filter client dev",
+    "db:seed": "pnpm --filter server seed",
+    "db:reset": "pnpm --filter server db:reset",
+    "build": "pnpm --filter client build"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "typescript": "^5.4.0"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "better-sqlite3",
+      "esbuild",
+      "@apollo/protobufjs"
+    ],
+    "overrides": {
+      "@types/react": "^18.3.31",
+      "@types/react-dom": "^18.3.7"
+    }
+  }
+}

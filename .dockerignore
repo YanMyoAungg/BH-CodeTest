@@ -1,0 +1,12 @@
+node_modules/
+dist/
+.DS_Store
+*.db
+*.db-journal
+**/*.db
+**/*.db-journal
+.env
+.env.*
+!.env.example
+.git/
+README.md
