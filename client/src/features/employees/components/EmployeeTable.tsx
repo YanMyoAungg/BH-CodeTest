@@ -120,8 +120,8 @@ export const EmployeeTable = memo(function EmployeeTable({
   });
 
   return (
-    <div className="rounded-md border bg-background overflow-hidden">
-      <Table className="table-fixed">
+    <div className="rounded-md border bg-background overflow-x-auto">
+      <Table className="table-fixed min-w-[900px]">
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (
             <TableRow key={headerGroup.id}>

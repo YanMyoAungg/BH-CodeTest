@@ -138,7 +138,7 @@ export function EmployeesPage() {
         }}
       />
 
-      <main className="mx-auto max-w-7xl p-4 sm:p-6">
+      <main className="mx-auto max-w-7xl p-3 sm:p-6">
         <EmployeeToolbar
           searchTerm={filters.searchTerm}
           onSearchChange={filters.setSearchTerm}
@@ -229,9 +229,9 @@ function Pagination({
   setParam: (key: string, value: string) => void;
 }) {
   return (
-    <div className="mt-4 flex items-center justify-between text-sm text-muted-foreground">
+    <div className="mt-4 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between text-sm text-muted-foreground">
       <div className="flex items-center gap-2">
-        <span>
+        <span className="text-xs sm:text-sm">
           {total === 0
             ? "No results"
             : `Showing ${(page - 1) * limit + 1}-${Math.min(page * limit, total)} of ${total}`}
