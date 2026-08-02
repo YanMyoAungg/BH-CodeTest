@@ -3,8 +3,15 @@
 A full-stack employee management dashboard built as a frontend code test assignment. React + Vite on the client, Apollo Server (GraphQL) on the backend, with a SQLite database and JWT-based authentication.
 
 **Live Demo**: [https://bh-codetest.fly.dev](https://bh-codetest.fly.dev)
-
 > **Note**: Token refresh may not work on the demo site due to fly.io cold start. It works just fine when running locally though.
+#
+
+<img width="2938" height="1582" alt="image" src="https://github.com/user-attachments/assets/b3eb8157-c5a5-4e5d-9933-8c69dc2d47a0" />
+
+#
+
+
+
 
 | Decision                                                            | Why                                                                                                                                                                                                                                                                                                                       |
 | ------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
