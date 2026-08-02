@@ -58,6 +58,7 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 ENV NODE_ENV=production
 ENV PORT=4000
+ENV JWT_SECRET=fly-bh-codetest-secret
 COPY server/ server/
 COPY --from=client-build-fly /app/client/dist /app/client/dist
 COPY nginx.conf /etc/nginx/sites-available/default
