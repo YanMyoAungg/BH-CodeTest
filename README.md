@@ -2,6 +2,8 @@
 
 A full-stack employee management dashboard built as a frontend code test assignment. React + Vite on the client, Apollo Server (GraphQL) on the backend, with a SQLite database and JWT-based authentication.
 
+**Live Demo**: [https://bh-codetest.fly.dev](https://bh-codetest.fly.dev)
+
 | Decision                                                            | Why                                                                                                                            |
 | ------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
 | **localStorage** for JWT                                            | Simple, no CSRF worries, no cookie config. A production app would use HTTP-only cookies with a BFF — overkill for a code test. |
@@ -9,6 +11,7 @@ A full-stack employee management dashboard built as a frontend code test assignm
 | **SQLite**                                                          | Zero-install database, single file. Easy to setup.                                                                             |
 | **GraphQL**                                                         | I chose the GraphQL over REST for this code test beause on this opportunity I wanted to learn GraphQL as well.                 |
 | **Vite** over Next.js                                               | No SSR/SSG complexity for a dashboard CRUD app. Fast HMR, simpler setup.                                                       |
+| **Fly.io**                                                          | Initially considered Render, Railway, and Vercel. Chose Fly.io because it supports persistent volumes for SQLite on the free tier. Render's free tier doesn't persist disk, Railway requires a paid plan for volumes, and Vercel is serverless (no filesystem). Fly.io gives me a 1GB volume + auto HTTPS out of the box. |
 
 ## Quick Start (Docker)
 

@@ -39,3 +39,19 @@ WORKDIR /app
 COPY --from=client-build /app/client/dist ./dist
 EXPOSE 3001
 CMD ["serve", "dist", "--single", "--listen", "3001", "--no-clipboard"]
+
+FROM server-deps AS fly
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends nginx && \
+    rm -rf /var/lib/apt/lists/*
+ENV NODE_ENV=production
+ENV PORT=4000
+COPY server/ server/
+COPY --from=client-build /app/client/dist /app/client/dist
+COPY nginx.conf /etc/nginx/sites-available/default
+COPY fly-entrypoint.sh /fly-entrypoint.sh
+RUN chmod +x /fly-entrypoint.sh && \
+    rm -f /etc/nginx/sites-enabled/default && \
+    ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
+EXPOSE 3000
+CMD ["/fly-entrypoint.sh"]
