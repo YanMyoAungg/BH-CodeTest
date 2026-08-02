@@ -40,6 +40,18 @@ COPY --from=client-build /app/client/dist ./dist
 EXPOSE 3001
 CMD ["serve", "dist", "--single", "--listen", "3001", "--no-clipboard"]
 
+FROM base AS client-build-fly
+ARG VITE_API_URL=
+ARG VITE_TOKEN_NAME=better_hr_token
+ENV VITE_API_URL=${VITE_API_URL}
+ENV VITE_TOKEN_NAME=${VITE_TOKEN_NAME}
+COPY pnpm-workspace.yaml pnpm-lock.yaml package.json ./
+COPY client/package.json client/
+COPY server/package.json server/
+RUN pnpm install --no-frozen-lockfile --filter client
+COPY client/ client/
+RUN pnpm --filter client build
+
 FROM server-deps AS fly
 RUN apt-get update && \
     apt-get install -y --no-install-recommends nginx && \
@@ -47,7 +59,7 @@ RUN apt-get update && \
 ENV NODE_ENV=production
 ENV PORT=4000
 COPY server/ server/
-COPY --from=client-build /app/client/dist /app/client/dist
+COPY --from=client-build-fly /app/client/dist /app/client/dist
 COPY nginx.conf /etc/nginx/sites-available/default
 COPY fly-entrypoint.sh /fly-entrypoint.sh
 RUN chmod +x /fly-entrypoint.sh && \
