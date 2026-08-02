@@ -44,7 +44,7 @@ export function EmployeeFormDialog({
         </DialogHeader>
         <form onSubmit={onSubmit} className="space-y-4">
           <div className="grid grid-cols-2 gap-4">
-            <Field label="First Name" id="first-name" error={errors.firstName}>
+            <Field label="First Name" id="first-name" required error={errors.firstName}>
               <Input
                 id="first-name"
                 placeholder="Ada"
@@ -54,7 +54,7 @@ export function EmployeeFormDialog({
                 }
               />
             </Field>
-            <Field label="Last Name" id="last-name" error={errors.lastName}>
+            <Field label="Last Name" id="last-name" required error={errors.lastName}>
               <Input
                 id="last-name"
                 placeholder="Wong"
@@ -64,7 +64,7 @@ export function EmployeeFormDialog({
                 }
               />
             </Field>
-            <Field label="Email" id="email" error={errors.email}>
+            <Field label="Email" id="email" required error={errors.email}>
               <Input
                 id="email"
                 type="email"
@@ -99,7 +99,7 @@ export function EmployeeFormDialog({
                 <p className="text-xs text-destructive">{errors.address}</p>
               )}
             </div>
-            <Field label="Salary" id="salary" error={errors.salary}>
+            <Field label="Salary" id="salary" required error={errors.salary}>
               <Input
                 id="salary"
                 type="text"
@@ -112,7 +112,7 @@ export function EmployeeFormDialog({
                 }}
               />
             </Field>
-            <Field label="Join Date" id="join-date" error={errors.joinDate}>
+            <Field label="Join Date" id="join-date" required error={errors.joinDate}>
               <Input
                 id="join-date"
                 type="date"
@@ -156,16 +156,18 @@ function Field({
   label,
   id,
   error,
+  required,
   children,
 }: {
   label: string;
   id: string;
+  required?: boolean;
   error?: string;
   children: React.ReactNode;
 }) {
   return (
     <div className="space-y-1">
-      <Label htmlFor={id}>{label}</Label>
+      <Label htmlFor={id} required={required}>{label}</Label>
       {children}
       {error && <p className="text-xs text-destructive">{error}</p>}
     </div>
